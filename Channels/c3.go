@@ -43,14 +43,14 @@ func pfunc(ch chan Lang) {
 	fmt.Println("GoLang Format: %v", l)
 
 	fmt.Println("JSON Format")
-	res1D := &Lang{
+	res1 := &Lang{
 		Name:  l.Name,
 		URL:   l.URL,
 		Bytes: l.Bytes,
 		Time:  l.Time,
 	}
-	res1B, _ := json.Marshal(res1D) //Printing JSON format using json.Marshal
-	fmt.Println(string(res1B))
+	res2, _ := json.Marshal(res1) //Printing JSON format using json.Marshal
+	fmt.Println(string(res2))
 	fmt.Println("\n")
 
 }
