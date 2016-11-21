@@ -58,28 +58,38 @@ func handleRequest(conn net.Conn) error {
 	buf := make([]byte, 1024)
 	// Read the incoming connection into the buffer.
 	for {
-		reqLen, err := conn.Read(buf)
+
+		err := Request(conn, buf)
 		if err != nil {
 			//fmt.Println("Error reading:", err.Error())
-			return errors.New("Received empty")
+			return errors.New("ERROR")
 		}
-		// output message received
-		request := string(buf[:reqLen-2])
-		fmt.Println("Client Request	:", request)
 
-		//reading response from server
-		response := Check(request)
-		fmt.Println("Server Response : ", response)
-
-		// Send a response back to person contacting us.
-		_, err1 := conn.Write([]byte(response + "\n"))
-		//checking if there is an error through a message
-		if err1 != nil {
-			return errors.New("Connection Full")
-		}
-		return nil
 	}
-	// Close the connection when you're done with it.
-	//conn.Close()
 
+	return nil
+}
+
+func Request(conn net.Conn, buf []byte) error {
+
+	reqLen, err := conn.Read(buf)
+	if err != nil {
+		//fmt.Println("Error reading:", err.Error())
+		return errors.New("Received empty")
+	}
+	// output message received
+	request := string(buf[:reqLen-2])
+	fmt.Println("Client Request	:", request)
+
+	//reading response from server
+	response := Check(request)
+	fmt.Println("Server Response : ", response)
+
+	// Send a response back to person contacting us.
+	_, err1 := conn.Write([]byte(response + "\n"))
+	//checking if there is an error through a message
+	if err1 != nil {
+		return errors.New("Connection Full")
+	}
+	return nil
 }
