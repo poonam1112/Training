@@ -139,7 +139,7 @@ func TestRequest(t *testing.T) {
 
 	b := make([]byte, 20)
 
-	c := &myConn{buf: b, r: 0, w: 4}
+	c := &myConn{buf: b, r: 0, w: 20}
 
 	handle := Request(c, b)
 	if handle != nil {
@@ -150,4 +150,17 @@ func TestRequest(t *testing.T) {
 	if handle != nil {
 		t.Fatal("failed to Handle Operation ")
 	}*/
+}
+
+func TestRequestFailure(t *testing.T) {
+
+	b := make([]byte, 20)
+
+	c := &myConn{buf: b, r: 0, w: 0}
+
+	handle := Request(c, b)
+	if handle == nil {
+		t.Fatal("Failure")
+	}
+
 }
