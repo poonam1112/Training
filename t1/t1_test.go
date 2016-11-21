@@ -134,15 +134,20 @@ func TestCheck(t *testing.T) {
 	}*/
 }
 
-//testing handlerequest function which handle the connection
-func TestHandleRequest(t *testing.T) {
+//testing Request function which handle the connection
+func TestRequest(t *testing.T) {
 
 	b := make([]byte, 20)
 
 	c := &myConn{buf: b, r: 0, w: 4}
 
-	handle := handleRequest(c)
+	handle := Request(c, b)
 	if handle != nil {
 		t.Fatal("failed to Handle Operation ")
 	}
+
+	/*handle := handleRequest(c)
+	if handle != nil {
+		t.Fatal("failed to Handle Operation ")
+	}*/
 }
