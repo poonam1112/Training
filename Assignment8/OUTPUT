@@ -1,0 +1,6 @@
+nagarro@nagarro-VirtualBox:~$ telnet localhost 8089
+Trying 127.0.0.1...
+Connected to localhost.
+Escape character is '^]'.
+{"CommuniqueType":"ReadRequest","Header":{"Url":"/mock"}}                   
+{"CommuniqueType":"ReadResponse","Header":{"MessageBodyType":"OneMockDefinition","StatusCode":"200 OK","Url":"/mock"},"Body":{"Mock":"This is a Mock Data"}}
